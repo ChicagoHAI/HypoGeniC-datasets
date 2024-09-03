@@ -4,13 +4,18 @@ train_data_path: ./hotel_reviews_train.json
 val_data_path: ./hotel_reviews_val.json
 test_data_path: ./hotel_reviews_test.json
 prompt_templates:
-  observations: |
-    A hotel review is the following: "${review_sentence}"
-    The review is: ${label}.
-    
-  adaptive_info_prompt: |
-    A hotel review is the following: "${review_sentence}"
-    The review is: ${label}.
+  observations:
+    multi_content: |
+      A hotel review is the following: "${review_sentence}"
+      The review is: ${label}.
+      
+  adaptive_info_prompt:
+    multi_content:
+      prefix: |
+        Pattern ${idx}: {hypothesis_text}
+      multi_content: |
+        A hotel review is the following: "${review_sentence}"
+        The review is: ${label}.
     
   few_shot_prefix: |
     We have seen some hotel reviews:

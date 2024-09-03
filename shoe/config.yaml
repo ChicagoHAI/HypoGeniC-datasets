@@ -4,10 +4,15 @@ train_data_path: ./shoe_train.json
 val_data_path: ./shoe_val.json
 test_data_path: ./shoe_test.json
 prompt_templates:
-  observations: |
-    A customer is ${appearance}. This customer bought a pair of ${label} shoes.
-  adaptive_info_prompt: |
-    A customer is ${appearance}. This customer bought a pair of ${label} shoes.
+  observations:
+    multi_content: |
+      A customer is ${appearance}. This customer bought a pair of ${label} shoes.
+  adaptive_info_prompt:
+    multi_content:
+      prefix: |
+        Pattern ${idx}: {hypothesis_text}
+      multi_content: |
+        A customer is ${appearance}. This customer bought a pair of ${label} shoes.
   few_shot_prefix: |
     Here are some examples of customers with certain features buying certain products:
   batched_generation:

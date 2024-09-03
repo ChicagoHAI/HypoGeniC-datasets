@@ -5,15 +5,21 @@ val_data_path: ./headline_binary_test.json
 test_data_path: ./headline_binary_val.json
 
 prompt_templates:
-  observations: |
-    Headline 1: ${headline_1}
-    Headline 2: ${headline_2}
-    Observation: ${label}
+  observations:
+    multi_content: |
+      Headline 1: ${headline_1}
+      Headline 2: ${headline_2}
+      Observation: ${label}
 
-  adaptive_info_prompt: |
-    Headline 1: ${headline_1}
-    Headline 2: ${headline_2}
-    Observation: ${label}
+  adaptive_info_prompt:
+    multi_content:
+      prefix: |
+        Pattern ${idx}: {hypothesis_text}
+      multi_content: |
+        Example ${idx}:
+        Headline 1: ${headline_1}
+        Headline 2: ${headline_2}
+        Observation: ${label}
     
   few_shot_prefix: |
     Here are some previous examples to help you.
