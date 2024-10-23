@@ -10,13 +10,9 @@ prompt_templates:
       The second tweet: ${second_tweet}
       Final answer: The ${label} tweet got more retweets.
   adaptive_info_prompt:
-    multi_content:
-      prefix: |
-        Pattern ${idx}: {hypothesis_text}
-      multi_content: |
-        The first tweet: ${first_tweet}
-        The second tweet: ${second_tweet}
-        Final answer: The ${label} tweet got more retweets.
+    multi_content: |
+      Pattern ${idx}: ${hypothesis_text}
+      ${observations}
   few_shot_prefix: |
     Here are some examples:
   batched_generation:

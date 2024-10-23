@@ -12,14 +12,9 @@ prompt_templates:
       Observation: ${label}
 
   adaptive_info_prompt:
-    multi_content:
-      prefix: |
-        Pattern ${idx}: {hypothesis_text}
-      multi_content: |
-        Example ${idx}:
-        Headline 1: ${headline_1}
-        Headline 2: ${headline_2}
-        Observation: ${label}
+    multi_content: |
+      Pattern ${idx}: ${hypothesis_text}
+      ${observations}
     
   few_shot_prefix: |
     Here are some previous examples to help you.

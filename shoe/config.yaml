@@ -8,11 +8,9 @@ prompt_templates:
     multi_content: |
       A customer is ${appearance}. This customer bought a pair of ${label} shoes.
   adaptive_info_prompt:
-    multi_content:
-      prefix: |
-        Pattern ${idx}: {hypothesis_text}
-      multi_content: |
-        A customer is ${appearance}. This customer bought a pair of ${label} shoes.
+    multi_content: |
+      Pattern ${idx}: ${hypothesis_text}
+      ${observations}
   few_shot_prefix: |
     Here are some examples of customers with certain features buying certain products:
   batched_generation:

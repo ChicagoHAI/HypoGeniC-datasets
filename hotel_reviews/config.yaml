@@ -10,12 +10,9 @@ prompt_templates:
       The review is: ${label}.
       
   adaptive_info_prompt:
-    multi_content:
-      prefix: |
-        Pattern ${idx}: {hypothesis_text}
-      multi_content: |
-        A hotel review is the following: "${review_sentence}"
-        The review is: ${label}.
+    multi_content: |
+      Pattern ${idx}: ${hypothesis_text}
+      ${observations}
     
   few_shot_prefix: |
     We have seen some hotel reviews:
