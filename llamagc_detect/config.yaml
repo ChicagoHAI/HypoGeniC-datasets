@@ -37,7 +37,7 @@ prompt_templates:
       Text: 
       ${paper_text}
 
-  initialize_with_zero_shot:
+  initialize_zero_shot:
     system: |-
       You're a professional AI content detector.
       Based on your past experiences, please generate hypotheses that are useful for explaining why one particular text is more likely to be written by human or AI.
