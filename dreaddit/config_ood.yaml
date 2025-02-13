@@ -12,7 +12,7 @@ prompt_templates:
   adaptive_info_prompt:
     multi_content:
       prefix: |
-        Pattern ${idx}: {hypothesis_text}
+        Pattern ${idx}: ${hypothesis_text}
       multi_content: |
         A reddit post is the following: "${text}"
         The poster's stress status is: ${label}.

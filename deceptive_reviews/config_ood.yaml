@@ -12,7 +12,7 @@ prompt_templates:
   adaptive_info_prompt:
     multi_content:
       prefix: |
-        Pattern ${idx}: {hypothesis_text}
+        Pattern ${idx}: ${hypothesis_text}
       multi_content: |
         A hotel review is the following: "${review_sentence}"
         The review is: ${label}.
