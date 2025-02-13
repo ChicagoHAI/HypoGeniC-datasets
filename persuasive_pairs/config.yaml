@@ -12,14 +12,9 @@ prompt_templates:
       Observation: The ${label} argument uses more persuasive language.
 
   adaptive_info_prompt:
-    multi_content:
-      prefix: |
-        Pattern ${idx}: ${hypothesis_text}
-      multi_content: |
-        Example ${idx}:
-        Argument 1: ${argument_1}
-        Argument 2: ${argument_2}
-        Observation: The ${label} argument uses more persuasive language.
+    multi_content: |
+      Pattern ${idx}: ${hypothesis_text}
+      ${observations}
     
   few_shot_prefix: |
     Here are some previous examples to help you.

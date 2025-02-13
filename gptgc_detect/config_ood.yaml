@@ -12,12 +12,9 @@ prompt_templates:
       ${label_description}.
       
   adaptive_info_prompt:
-    multi_content:
-      prefix: |
-        Pattern ${idx}: ${hypothesis_text}
-      multi_content: |
-        Here is a story: "${story}"
-        ${label_description}.
+    multi_content: |
+      Pattern ${idx}: ${hypothesis_text}
+      ${observations}
     
   few_shot_prefix: |
     We have seen some story:

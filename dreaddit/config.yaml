@@ -10,12 +10,9 @@ prompt_templates:
       The poster's stress status is: ${label}.
     
   adaptive_info_prompt:
-    multi_content:
-      prefix: |
-        Pattern ${idx}: ${hypothesis_text}
-      multi_content: |
-        A reddit post is the following: "${text}"
-        The poster's stress status is: ${label}.
+    multi_content: |
+      Pattern ${idx}: ${hypothesis_text}
+      ${observations}
     
   few_shot_prefix: |
     We have seen some reddit posts:
