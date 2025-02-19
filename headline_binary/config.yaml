@@ -42,6 +42,17 @@ prompt_templates:
 
       Proposed hypotheses:
 
+  IO_refine_with_feedback:
+    system: |-
+      
+    user: |-
+      Applying your rule to the following inputs does not produce the expected outputs.
+      Here's your proposed hypothesis: ${hypothesis_text}
+      Below is some examples that you predicted wrong using the hypothesis.
+      ${observations}
+      Please generate new hypotheses that maps the given inputs to their corresponding outputs.
+      Propose ${num_hypotheses} possible hypotheses. Generate them in the format of 1. [hypothesis], 2. [hypothesis], ... ${num_hypotheses}. [hypothesis].
+      
   few_shot_baseline:
     system: |-
       You are a writer for an online newspaper company. So you are excellent at determining which headlines are more likely to cause users to click on the article.
