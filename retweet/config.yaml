@@ -303,3 +303,54 @@ prompt_templates:
       Give a short explanation of your decision.
       Then give your final answer in the format of "Final answer: [answer]".
       Your answer:
+
+  multiple_hypotheses_inference:
+    system: |-
+      You are a social media expert. 
+      Given a pair of tweets, you are asked to determine which will get more retweets.
+      From past experiences, you learned some patterns. 
+      You need to determine whether each of the patterns holds for the current pair of tweets, and also predict which tweet will get more retweets.
+      Give your final answer in the format of {Final answer: the _ tweet}
+
+    user: |-
+      Our learned patterns: ${hypotheses}
+      The first tweet: ${first_tweet}
+      The second tweet: ${second_tweet}
+
+      Given the patterns you learned above, predict which one will get more retweets.
+      Think step by step.
+      First step: Think about which patterns can be applied to these tweets.
+      Second step: Based on the applicable patterns, which tweet is likely to get more retweets?
+      Final step: Give your final answer in the format of {Final answer: the _ tweet}
+
+  test_autogen:
+    system: |-
+      
+    user: |-
+      Welcome, social_scientist and psychologist. Please discuss and debate on what makes tweets get more retweets, with the end goal being to generate ${num_hypotheses} hypotheses that are useful for predicting which tweet will get more retweets.
+      We have some key findings from some research papers that might be useful:
+      ${relevant_papers}
+      Also we have seen some pairs of tweets:
+      ${observations}
+      Here are the instructions of your discussion:
+      1. If you are the first one to speak, based on your role, use your expert domain knowledge to generate ${num_hypotheses} hypotheses in the format of 1. [hypothesis], 2. [hypothesis], ... ${num_hypotheses}. [hypothesis].
+         Remember to generate the hypotheses from your perspective as an expert in your domain, not an average person.    
+      2. If you are not the first one to speak, refine each of the previous speaker's hypotheses based on your expert domain knowledge.
+
+  batched_generation_with_paper:
+    system: |-
+      You are a social media expert. 
+      Given a set of tweet pairs, we want to generate hypotheses that are useful for predicting which tweet will get more retweets.
+      Using the given examples and relevant literatures, please propose ${num_hypotheses} possible hypotheses.
+      These hypotheses should identify specific patterns that occur across the provided tweets.
+      Please propose ${num_hypotheses} possible hypotheses in the format of 1. [hypothesis], 2. [hypothesis], ... ${num_hypotheses}. [hypothesis].
+
+    user: |-
+      We have some key findings from research papers:
+      ${relevant_papers}
+      We have seen some pairs of tweets:
+      ${observations}
+      Please generate hypotheses that are useful for predicting which tweet will get more retweets.
+      When generating hypotheses, make sure to utilize information both from the key findings of papers and the patterns in data.
+      Propose ${num_hypotheses} possible hypotheses in the format specified above.
+      Proposed hypotheses:
