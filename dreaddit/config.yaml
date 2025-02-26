@@ -233,7 +233,7 @@ prompt_templates:
 
       Given the pattern you learned above, give an answer of whether the poster of the reddit post has stress or not based on the content of the post.
       Think step by step.
-      First step: Think about which pattern can be applied to the reddit post.
+      First step: Consider if the pattern can be applied to the reddit post.
       Second step: Based on the pattern, does the poster of a reddit post has stress or not? Answer should be "has stress" or "no stress".
       Final step: give your final answer in the format of {Final answer: answer}
 
@@ -270,4 +270,4 @@ prompt_templates:
       Note that adding specific examples does not count as "provide significantly more information".
       Give a short explanation of your decision.
       Then give your final answer in the format of "Final answer: [answer]".
-      Your answer: 
+      Your answer:

@@ -62,6 +62,7 @@ prompt_templates:
     user: |-
       Our learned pattern: ${hypothesis}
       New customer: ${appearance} is buying a pair of shoes, the shoes should be which color?
+      Consider if the pattern can be applied to this customer.
       Explain your reasoning before giving your final answer.
 
   is_relevant:
