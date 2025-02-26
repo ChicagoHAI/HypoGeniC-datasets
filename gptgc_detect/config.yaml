@@ -269,7 +269,7 @@ prompt_templates:
 
     user: |-
       Our learned pattern: ${hypothesis}                            
-      A text is the following: "${review_sentence}"
+      A text is the following: "${story}"
       Is this pattern relevant to the given text?
       Think step by step:
       We define a criterion to be [feature] -> [judgement (human or AI)]. For example, [exaggerated language] -> [text is AI].
