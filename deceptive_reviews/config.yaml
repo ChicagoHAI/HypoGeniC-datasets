@@ -149,19 +149,6 @@ prompt_templates:
       Generate the refined hypothesis in the format of 1. [hypothesis].
       Refined hypothesis:
 
-    # user: |-
-    #   This is the hypothesis to be refined:
-    #   ${hypotheses}
-    #   For the hypothesis, you need to determine the level of specificity of the hypothesis, whether it lacks specificity, is too specific, or has the proper level of specificity.
-    #   You should make your decision based on the word count: a hypothesis with length close to 70 words would be properly specific, if it is much shorter than 70 words, it lacks specificty, if it is much longer than 70 words, it is too specific.
-    #   For example, "Review posting patterns can indicate deception; for example, reviewers who submit multiple reviews within a short time frame are often more likely to be deceptive." is only 25-word long and should be classified as lack specificity.
-    #   If it lacks specificity, you need to refine the hypothesis by rephrasing the pattern or adding real-life examples to it so it can be more specific and easier to be used.
-    #   If it is too specific, you need to refine the hypothesis by decreasing the use of examples and rephrasing the sentences to make it more brief and concise.
-    #   If it has the proper level of specificity, do not change anything and output the original hypothesis.
-    #   When you refine the hypothesis, you should NOT change the fundamental meaning or any significant point in the hypothesis.
-    #   Generate the refined hypothesis in the format of 1. [hypothesis].
-    #   Refined hypothesis:
-
   batched_generation:
     system: |-
       You're a professional hotel review analyst.
@@ -268,7 +255,7 @@ prompt_templates:
 
       Given the pattern you learned above, give an answer of whether the hotel review above is deceptive or truthful.
       Think step by step.
-      First step: Think about which pattern can be applied to the hotel review.
+      First step: Consider if the pattern can be applied to the hotel review.
       Second step: Based on the pattern, is this hotel review deceptive or truthful?
       Final step: give your final answer in the format of {Final answer: answer}
 
@@ -289,22 +276,6 @@ prompt_templates:
       First step: Think about which pattern can be applied to the hotel review.
       Second step: Based on the pattern, is this hotel review deceptive or truthful?
       Final step: give your final answer in the format of {Final answer: answer}
-
-  # multiple_hypotheses_inference:
-  #   system: |-
-  #     You are a professional deceptive detection agent and your job is to determine whether a hotel review is truthful or deceptive. 
-  #     In other words, we want to know whether the review is written by someone who had real experiences with the hotel. 
-  #     From past experiences, you learned some patterns. 
-  #     You need to determine whether each of the patterns holds for the current hotel review, and also predict whether the current hotel review is truthful or deceptive. 
-  #     Give an answer. The answer should be one word (truthful or deceptive).
-  #     Give your final answer in the format of {Final answer: answer}
-  #   user: |-
-  #     Our learned patterns: ${hypotheses}                          
-  #     A hotel review is the following: "${review_sentence}"
-
-  #     Given the pattern you learned above, give an answer of whether the hotel review above is deceptive or truthful.
-  #     Think carefully and logically, explaining your answer.
-  #     Give your final answer in the format of {Final answer: answer}
   
   check_hypothesis_pair_repetition:
     system: |-
@@ -349,21 +320,6 @@ prompt_templates:
       Step 3: If the answer in Step 2 is yes, then the pattern is relevant; otherwise, it is not.
       Step 4: Give your final answer.
       Answer:
-
-  # is_relevant:
-  #   system: |-
-  #     You are a deceptive detection agent for hotel reviews. 
-  #     From past experiences, you learned a pattern about how to judge whether a hotel review is truthful or deceptive.
-  #     Now, given a new hotel review, you need to determine whether this pattern is relevant or not.
-  #     Answer "yes" if the pattern is relevant and "no" if the pattern is not relevant.
-  #     Keep you answer short (1-2 sentences).
-  #     Give your final answer in the format of "Final answer: [answer].
-
-  #   user: |-
-  #     Our learned pattern: ${hypothesis}                            
-  #     A hotel review is the following: "${review_sentence}"
-
-  #     Answer:
 
   adaptive_inference:
     system: |-
