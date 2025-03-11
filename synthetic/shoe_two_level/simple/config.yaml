@@ -99,7 +99,7 @@ prompt_templates:
       You must give your final answer in the format of "Final answer: ANSWER". Do not use markdown around your answer.
 
   multiple_hypotheses_inference:
-    sytem: |-
+    system: |-
       Instruction:
       You are a shoe salesman and want to recommend shoes to customers. There are white, red, orange, green, blue, and black shoes.
       From past experiences, you learned some patterns. 
