@@ -41,6 +41,8 @@
     },
     
     "ground_truth_hypotheses": [
-        "People wearing black or orange hats buy shoes that are the same color as their shirts. Those with white or red hats choose shoes that are the same color as their bags. Individuals with green or blue hats purchase black shoes if they are male and white shoes if they are female."
+        "People wearing black or orange hats buy shoes that are the same color as their shirts.",
+        "People with white or red hats choose shoes that are the same color as their bags.",
+        "Individuals with green or blue hats purchase black shoes if they are male and white shoes if they are female."
     ]
 }

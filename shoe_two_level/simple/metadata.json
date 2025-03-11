@@ -36,6 +36,7 @@
     },
     
     "ground_truth_hypotheses": [
-        "Men will buy shoes that are the same color as their shirt, and women will buy shoes that are the same color as their hat."
+        "Men will buy shoes that are the same color as their shirt.",
+        "Women will buy shoes that are the same color as their hat."
     ]
 }
