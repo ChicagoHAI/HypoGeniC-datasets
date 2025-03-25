@@ -1,0 +1,108 @@
+task_name: db_synth_regression_adventure
+
+train_data_path: ./adventure_train.json
+val_data_path: ./adventure_val.json
+test_data_path: ./adventure_test.json
+
+y_min: 6.5
+y_max: 10.0
+y_mu: 8.973
+
+prompt_templates:
+  observations:
+      multi_content: |
+        A traveler with age ${age} goes on ${number_of_trips} adventure trips to remote areas per year. They prefer the ${travel_style} type of travel style and have a stress tolerance of ${stress_tolerance} and a creativity score of ${label}.
+  few_shot_prefix: |
+    Here are some examples of travelers with certain features and their creativity scores:
+
+  few_shot_baseline:
+    system: |-
+      You are a researcher studying the relationship between the creativity score of travelers and their travel habits, age, and stress tolerance.
+      Give your answer for the creativity score of the traveler. The answer should be a number between 0 and 10. If you do not have enough information to make a recommendation, you should give the answer "unknown".
+      Give your final answer in the format of "Final answer: [answer]."
+
+    user: |-
+      ${few_shot_prefix}${observations}
+      New traveler: A traveler with age ${age} goes on ${number_of_trips} adventure trips to remote areas per year. They prefer the ${travel_style} type of travel style and have a stress tolerance of ${stress_tolerance}. What creativity score do they have?
+      Answer:
+
+  initialize_zero_shot:
+    system: |-
+      You are a researcher studying the relationship between the creativity score of travelers and their travel habits, age, and stress tolerance.
+      The description of a traveler includes their age, number of adventure trips per year, travel style, stress tolerance, and creativity score.
+      Based on your past experiences, please generate hypotheses that are useful for predicting the creativity score of travelers based on their description. 
+      In particular, it may be useful to think about "what is the relationship between stress tolerance and creativity score for travelers with different numbers of adventure travel trips per year?"
+
+      These hypotheses should identify patterns that you can find in the data. They should also be generalizable to new instances.
+      Please propose ${num_hypotheses} refined hypotheses and generate them in the format of 1. [hypothesis], 2. [hypothesis], ... ${num_hypotheses}. [hypothesis].
+
+    user: |-
+      Please generate hypotheses that are useful for predicting the creativity score of travelers based on their description.
+      Please propose ${num_hypotheses} possible hypotheses.
+
+      Generate them in the format of 1. [hypothesis], 2. [hypothesis], ... ${num_hypotheses}. [hypothesis]. 
+
+      Proposed hypotheses:
+
+  batched_generation:
+    system: |-
+      You are a researcher studying the relationship between the creativity score of travelers and their travel habits, age, and stress tolerance.
+      Given a set of observations, we want to generate hypotheses that are useful for predicting the creativity score of travelers based on their description.
+      Please be concise and keep the hypotheses to be one-sentence long.  
+      Please generate them in the format of 
+      {1. [hypothesis]. 
+      2. [hypothesis].
+      ... 
+      ${num_hypotheses}. [hypothesis].}
+      Only propose ${num_hypotheses} possible hypotheses in total.
+      Please make the hypotheses general and applicable to new examples.
+
+    user: |-
+      We made some observations:
+      ${observations}
+      Based on the above observations, generate ${num_hypotheses} hypotheses.
+      Please be concise and keep the hypotheses to be one-sentence long.  
+      Please generate them in the format of 
+      {1. [hypothesis]. 
+      2. [hypothesis].
+      ... 
+      ${num_hypotheses}. [hypothesis].}
+      Only propose ${num_hypotheses} possible hypotheses in total.
+      
+  inference:
+    system: |-
+      Instruction:
+      You are a researcher studying the relationship between the creativity score of travelers and their travel habits, age, and stress tolerance.
+      From past experiences, you learned some patterns.
+      Now, at each time, you should apply the learned pattern, given below, to the new travelers's description and predict the creativity score of the traveler.
+      Please give an answer for the creativity score of the traveler. The answer should be a number between 0 and 10. If you do not have enough information to make a recommendation, you should give the answer "unknown".
+      Please give your final answer in the format of "Final answer: [answer]".
+
+    user: |-
+      Our learned pattern: ${hypothesis}
+      New traveler: A traveler with age ${age} goes on ${number_of_trips} adventure trips to remote areas per year. They prefer the ${travel_style} type of travel style and have a stress tolerance of ${stress_tolerance}. What creativity score do they have?
+      
+      Given the pattern you learned above, give an answer for the creativity score of the traveler.
+      Think step by step.
+      First step: Consider if the pattern can be applied to this traveler.
+      Second step: Based on the pattern, predict the creativity score of the traveler.
+      You must give your final answer in the format of "Final answer: ANSWER". Do not use markdown around your answer.
+
+  multiple_hypotheses_inference:
+    system: |-
+      Instruction:
+      You are a researcher studying the relationship between the creativity score of travelers and their travel habits, age, and stress tolerance.
+      From past experiences, you learned some patterns. 
+      Now, at each time, you should apply the learned pattern, given below, to a new traveler's description and predict the creativity score of the traveler.
+      Please give an answer for the creativity score of the traveler. The answer should be a number between 0 and 10. If you do not have enough information to make a recommendation, you should give the answer "unknown".
+      Please give your final answer in the format of {Final answer: answer}
+
+    user: |-
+      Our learned patterns: ${hypotheses}                          
+      New traveler: A traveler with age ${age} goes on ${number_of_trips} adventure trips to remote areas per year. They prefer the ${travel_style} type of travel style and have a stress tolerance of ${stress_tolerance}. What creativity score do they have?
+
+      Given the patterns you learned above, give an answer for the creativity score of the traveler.
+      Think step by step.
+      First step: Think about which pattern can be applied to this traveler.
+      Second step: Based on the pattern, predict the creativity score of the traveler.
+      You must give your final answer in the format of "Final answer: ANSWER". Do not use markdown around your answer.
